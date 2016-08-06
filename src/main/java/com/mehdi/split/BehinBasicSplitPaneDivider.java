@@ -36,7 +36,7 @@ public class BehinBasicSplitPaneDivider extends BasicSplitPaneDivider {
 
     @Override
     public int getDividerSize() {
-        return triangleHeight + 5;
+        return triangleHeight + 3;
     }
 
     @Override
@@ -54,12 +54,11 @@ public class BehinBasicSplitPaneDivider extends BasicSplitPaneDivider {
 
         public BehinCustomJSplitButton(boolean isLeft) {
             this.left = isLeft;
-            setMinimumSize(new Dimension(triangleHeight, triangleHeight));
+            setMinimumSize(new Dimension(triangleWidth, triangleHeight));
             setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
             setFocusPainted(false);
             setBorderPainted(false);
             setRequestFocusEnabled(false);
-
         }
 
         public boolean isFocusTraversable() {
@@ -97,11 +96,11 @@ public class BehinBasicSplitPaneDivider extends BasicSplitPaneDivider {
                 if (left)
                     g.fillRect(0, 0, this.getWidth(),
                             this.getHeight());
-
+                else
+                    this.setBounds(triangleHeight + 1, 1, triangleWidth, triangleHeight);
 
                 g.setColor(Color.black);
                 g.fillPolygon(xs, ys, 3);
-
             }
         }
     }

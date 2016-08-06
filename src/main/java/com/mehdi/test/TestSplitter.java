@@ -32,7 +32,7 @@ public class TestSplitter extends JPanel {
         splitter = new JSplitPane(JSplitPane.VERTICAL_SPLIT, panel1, panel2);
         splitter.setDividerSize(40);
         splitter.setDividerLocation(30);
-        splitter.setResizeWeight(1);
+        splitter.setResizeWeight(0.5);
         splitter.setToolTipText("");
 //        splitter.setSize(20, 20);
         splitter.setOneTouchExpandable(true);
