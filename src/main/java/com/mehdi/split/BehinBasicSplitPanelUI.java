@@ -21,7 +21,7 @@ public class BehinBasicSplitPanelUI extends BasicSplitPaneUI {
     }
 
     public BehinBasicSplitPaneDivider createDefaultDivider() {
-        return new BehinBasicSplitPaneDivider(this);
+        return new BehinBasicSplitPaneDivider(this, getOrientation());
     }
 
     public AbstractTriangleBean getLeftTriangleBean() {

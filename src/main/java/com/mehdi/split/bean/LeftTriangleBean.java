@@ -10,6 +10,7 @@ import static javax.swing.JSplitPane.HORIZONTAL_SPLIT;
 public class LeftTriangleBean extends AbstractTriangleBean {
 
     private Integer orientation;
+    private Integer jSplitPaneHeight;
 
     public LeftTriangleBean(Integer height) {
         super(height);
@@ -35,6 +36,8 @@ public class LeftTriangleBean extends AbstractTriangleBean {
             this.middleYPointInMatrix = base;
             this.leftYPointInMatrix = 0;
             this.rightYPointInMatrix = base * 2;
+
+            jSplitPaneHeight = base * 2;
         } else {
             this.middleXPointInMatrix = base;
             this.leftXPointInMatrix = 0;
@@ -43,6 +46,8 @@ public class LeftTriangleBean extends AbstractTriangleBean {
             this.middleYPointInMatrix = 0;
             this.leftYPointInMatrix = height;
             this.rightYPointInMatrix = height;
+
+            jSplitPaneHeight = height;
         }
 
         return this;
@@ -64,5 +69,9 @@ public class LeftTriangleBean extends AbstractTriangleBean {
             }
         }
         return buttonDistance;
+    }
+
+    public Integer getJSplitPaneHeight() {
+        return jSplitPaneHeight;
     }
 }

@@ -1,7 +1,8 @@
 package com.mehdi.split;
 
+import com.mehdi.split.bean.LeftTriangleBean;
+
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicSplitPaneDivider;
 import java.awt.*;
 
@@ -13,13 +14,25 @@ public class BehinBasicSplitPaneDivider extends BasicSplitPaneDivider {
     private AbstractTriangleBean leftTriangleBean;
     private AbstractTriangleBean rightTriangleBean;
     private int oneTouchSize = 40;
+    private int height;
 
-    public BehinBasicSplitPaneDivider(BehinBasicSplitPanelUI ui) {
+    public BehinBasicSplitPaneDivider(BehinBasicSplitPanelUI ui, int orientation) {
         super(ui);
+        this.orientation = orientation;
         this.leftTriangleBean = ui.getLeftTriangleBean().make(ui.getOrientation());
         this.rightTriangleBean = ui.getRightTriangleBean().make(ui.getOrientation());
+        this.height = computeHeight();
+        setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
     }
 
+    private int computeHeight() {
+        return ((LeftTriangleBean) leftTriangleBean).getJSplitPaneHeight();
+    }
+
+    @Override
+    public int getDividerSize() {
+        return height + 10;
+    }
 
     @Override
     protected JButton createLeftOneTouchButton() {
@@ -36,6 +49,7 @@ public class BehinBasicSplitPaneDivider extends BasicSplitPaneDivider {
 
         private boolean left;
 
+
         public BehinCustomJSplitButton(boolean isLeft) {
             this.left = isLeft;
             setMinimumSize(new Dimension(oneTouchSize, oneTouchSize));
@@ -43,13 +57,11 @@ public class BehinBasicSplitPaneDivider extends BasicSplitPaneDivider {
             setFocusPainted(false);
             setBorderPainted(false);
             setRequestFocusEnabled(false);
+
         }
 
         public boolean isFocusTraversable() {
             return false;
-        }
-
-        public void setBorder(Border border) {
         }
 
         private int[] getTriangleXPoints(boolean left) {
@@ -76,14 +88,15 @@ public class BehinBasicSplitPaneDivider extends BasicSplitPaneDivider {
         public void paint(Graphics g) {
             if (splitPane != null) {
                 int distance = leftTriangleBean.buttonDistance();
-                this.setSize(distance,distance);
+                this.setSize(distance, distance);
                 int[] xs = getTriangleXPoints(left);
                 int[] ys = getTriangleYPoints(left);
-//                g.setColor(this.getBackground());
-                g.setColor(Color.yellow);
+                g.setColor(this.getBackground());
 
-                g.fillRect(0 , 0, this.getWidth() ,
-                        this.getHeight());
+                if (left)
+                    g.fillRect(0, 0, this.getWidth(),
+                            this.getHeight());
+
 
                 g.setColor(Color.black);
                 g.fillPolygon(xs, ys, 3);

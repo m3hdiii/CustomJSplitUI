@@ -7,6 +7,7 @@ import static javax.swing.JSplitPane.HORIZONTAL_SPLIT;
 
 public class RightTriangleBean extends AbstractTriangleBean {
 
+
     public RightTriangleBean(Integer height) {
         super(height);
     }
@@ -28,10 +29,13 @@ public class RightTriangleBean extends AbstractTriangleBean {
             this.middleYPointInMatrix = base;
             this.leftYPointInMatrix = 0;
             this.rightYPointInMatrix = 2 * base;
+
+
+
         } else {
             this.middleXPointInMatrix = base;
             this.leftXPointInMatrix = 0;
-            this.rightXPointInMatrix = base * 2;
+            this.rightXPointInMatrix = base * 2 ;
 
             this.middleYPointInMatrix = height;
             this.leftYPointInMatrix = 0;
