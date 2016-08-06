@@ -37,7 +37,7 @@ public class TestSplitter extends JPanel {
 //        splitter.setSize(20, 20);
         splitter.setOneTouchExpandable(true);
 
-        splitter.setUI(new BehinBasicSplitPanelUI(16, JSplitOrientation.VERTICAL_SPLIT));
+        splitter.setUI(new BehinBasicSplitPanelUI(12, JSplitOrientation.VERTICAL_SPLIT));
 
         splitter.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         LayoutManager layout = new BorderLayout();

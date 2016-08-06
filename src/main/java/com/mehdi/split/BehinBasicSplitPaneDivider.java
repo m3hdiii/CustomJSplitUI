@@ -13,25 +13,30 @@ public class BehinBasicSplitPaneDivider extends BasicSplitPaneDivider {
 
     private AbstractTriangleBean leftTriangleBean;
     private AbstractTriangleBean rightTriangleBean;
-    private int oneTouchSize = 40;
-    private int height;
+    private int triangleHeight;
+    private int triangleWidth;
 
     public BehinBasicSplitPaneDivider(BehinBasicSplitPanelUI ui, int orientation) {
         super(ui);
         this.orientation = orientation;
         this.leftTriangleBean = ui.getLeftTriangleBean().make(ui.getOrientation());
         this.rightTriangleBean = ui.getRightTriangleBean().make(ui.getOrientation());
-        this.height = computeHeight();
+        this.triangleHeight = computeHeight();
+        triangleWidth = computeWidth();
         setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
     }
 
     private int computeHeight() {
-        return ((LeftTriangleBean) leftTriangleBean).getJSplitPaneHeight();
+        return ((LeftTriangleBean) leftTriangleBean).getHeight();
+    }
+
+    private int computeWidth() {
+        return ((LeftTriangleBean) leftTriangleBean).getWidth();
     }
 
     @Override
     public int getDividerSize() {
-        return height + 10;
+        return triangleHeight + 5;
     }
 
     @Override
@@ -44,15 +49,12 @@ public class BehinBasicSplitPaneDivider extends BasicSplitPaneDivider {
         return new BehinCustomJSplitButton(false);
     }
 
-
     private class BehinCustomJSplitButton extends JButton {
-
         private boolean left;
-
 
         public BehinCustomJSplitButton(boolean isLeft) {
             this.left = isLeft;
-            setMinimumSize(new Dimension(oneTouchSize, oneTouchSize));
+            setMinimumSize(new Dimension(triangleHeight, triangleHeight));
             setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
             setFocusPainted(false);
             setBorderPainted(false);
@@ -87,8 +89,7 @@ public class BehinBasicSplitPaneDivider extends BasicSplitPaneDivider {
 
         public void paint(Graphics g) {
             if (splitPane != null) {
-                int distance = leftTriangleBean.buttonDistance();
-                this.setSize(distance, distance);
+                this.setSize(triangleWidth, triangleHeight);
                 int[] xs = getTriangleXPoints(left);
                 int[] ys = getTriangleYPoints(left);
                 g.setColor(this.getBackground());

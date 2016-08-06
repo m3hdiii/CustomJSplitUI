@@ -14,6 +14,12 @@ public class BehinBasicSplitPanelUI extends BasicSplitPaneUI {
     private AbstractTriangleBean rightTriangleBean;
 
     public BehinBasicSplitPanelUI(Integer height, JSplitOrientation orientation) {
+
+        //TODO develop
+        if (orientation == JSplitOrientation.HORIZONTAL_SPLIT) {
+            throw new RuntimeException("HORIZONTAL SPLIT HAS NOT YET DEVELOPED COMPLETELY ~ ");
+        }
+
         setOrientation(orientation == JSplitOrientation.HORIZONTAL_SPLIT ? 1 : 0);
 
         this.leftTriangleBean = new LeftTriangleBean(height);

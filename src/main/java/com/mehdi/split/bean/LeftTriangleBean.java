@@ -11,6 +11,7 @@ public class LeftTriangleBean extends AbstractTriangleBean {
 
     private Integer orientation;
     private Integer jSplitPaneHeight;
+    private Integer triangleWidth;
 
     public LeftTriangleBean(Integer height) {
         super(height);
@@ -38,6 +39,7 @@ public class LeftTriangleBean extends AbstractTriangleBean {
             this.rightYPointInMatrix = base * 2;
 
             jSplitPaneHeight = base * 2;
+            triangleWidth = height;
         } else {
             this.middleXPointInMatrix = base;
             this.leftXPointInMatrix = 0;
@@ -48,6 +50,7 @@ public class LeftTriangleBean extends AbstractTriangleBean {
             this.rightYPointInMatrix = height;
 
             jSplitPaneHeight = height;
+            triangleWidth = base * 2;
         }
 
         return this;
@@ -71,7 +74,11 @@ public class LeftTriangleBean extends AbstractTriangleBean {
         return buttonDistance;
     }
 
-    public Integer getJSplitPaneHeight() {
+    public Integer getHeight() {
         return jSplitPaneHeight;
+    }
+
+    public Integer getWidth(){
+        return triangleWidth;
     }
 }
